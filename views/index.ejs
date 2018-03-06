@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <script src="/javascripts/jquery-3.2.1.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row bg">
+        <div class="col-md-8 col-lg-8 x">
+          <div class="ft">智能系统</div>
+        </div>
+        <div class="col-md-4 col-lg-4">
+          <div class="dl" onclick="login()">登录</div>
+          <div class="zc" onclick="register()">注册</div>
+        </div>
+      </div>
+      <!--模态窗登录-->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                &times;
+              </button>
+              <h4 class="modal-title" id="myModalLabel">
+                模态框（Modal）标题
+              </h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+              </button>
+
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+      </div>
+
+      <!--模态窗注册-->
+    </div>
+  </body>
+  <script>
+//      $('#zhuce').click(function(){
+//          $('#myModal').modal();
+//      });
+function login(){
+    $('#myModal').modal('show');
+    $('#myModalLabel').text('登陆');
+    $('#modal-body').load('login');
+}
+      function register(){
+          $('#myModal').modal('show');
+          $('#myModalLabel').text('注册')
+          $('#modal-body').load('register');
+
+      }
+  </script>
+</html>

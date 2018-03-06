@@ -1,0 +1,77 @@
+<script>
+    function idphotoChange(sourceId, targetId) {
+        if (typeof FileReader === 'undefined') {
+            alert('你的浏览器不支持FileReader接口！');
+            return;
+        }
+        // var reader = new FileReader();
+        // reader.onload = function(e) {
+        //     var img = document.getElementById(targetId);
+        //     img.src = this.result;
+        // }
+        // reader.readAsDataURL(document.getElementById(sourceId).files[0]);
+        //检验是否为图像文件
+        var file = document.getElementById(sourceId).files[0];
+        if(!/image\/\w+/.test(file.type)){
+            alert("看清楚,这个需要图片！");
+            thisa.value=""
+            return false;
+        }
+        var reader = new FileReader();
+        //将文件以Data URL形式读入页面
+        reader.readAsDataURL(file);
+        reader.onload=function(e){
+            //显示文件
+            var img = document.getElementById(targetId);
+            img.src = this.result;
+            // result.innerHTML='<img src="' + this.result +'" alt="" />';
+
+        }
+    };
+    function renzheng(){
+        if(renzhengForm.name.value==''){
+            alert('真实不允许空');
+            renzhengForm.name.focus();
+            return false;
+        }
+        if(renzhengForm.idname.value==''){
+            alert('身份证不允许空');
+            renzhengForm.idname.focus();
+            return false;
+        }
+
+
+        if(renzhengForm.address.value==''){
+            alert('家庭住址不允许空');
+            renzhengForm.address.focus();
+            return false;
+        }
+        if(renzhengForm.idphoto.value==''){
+            alert('手持证件照不允许空');
+            renzhengForm.idphoto.focus();
+            return false;
+        }
+        if(renzhengForm.native.value==''){
+            alert('籍贯不允许空');
+            renzhengForm.native.focus();
+            return false;
+        }
+    }
+</script>
+<form role="form" id="renzhengForm" name='renzhengForm' action='/info/renzheng' method="post" enctype="multipart/form-data" onsubmit="return renzheng();">
+    <div class="form-group">
+        <label for="name" >姓名</label>
+        <input type="text" name='name' class="form-control" id="name" placeholder="请输入姓名">
+        <label for="native" >籍贯</label>
+        <input type="text" name='native' class="form-control" id="native" placeholder="请输入籍贯">
+        <label for="address" >居住地址</label>
+        <input type="text" name='address' class="form-control" id="address" placeholder="请输入地址">
+        <label for="idname" >身份证号</label>
+        <input type="text" name='idname' class="form-control" id="idname" placeholder="请输入身份证号码">
+        <label for="idphoto">手持证件照</label>
+        <input type="file" name="idphoto" id="idphoto" onchange="idphotoChange(this.id,'imgPre');" />
+        <img id="imgPre"  style="width: 200px;height: 200px;display: block;" />
+        <div style="margin-left: 45%">
+            <button type="submit" class="btn btn-default">确认</button>
+        </div>
+</form>

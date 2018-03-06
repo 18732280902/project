@@ -1,0 +1,22 @@
+<form role="form" id="certificationForm" name='certificationForm' action='admin/regect' method="post" onsubmit="return subInfo();">
+    <div class="form-group">
+        <label for="text" style="text-align: center;">驳回理由</label>
+        <textarea class="form-control" rows="3" style="resize:none;" id="text" name="text"></textarea>
+        <input type="hidden" id="uids" name="uids" value=<%-uid%> />
+        <input type="hidden" id="ids" name="ids" value=<%-id%> />
+    </div>
+    <button style="margin-left: 45%" type="button" class="btn btn-default" onclick="ti()">提交</button>
+</form>
+<script>
+    function ti() {
+        let text=$('#text').val();
+        let uid=$('#uids').val();
+        let id=$('#ids').val();
+        alert(text);
+       $.post('admin/regect',{text:text,uid:uid,id:id},function(rs){
+       $('#main').html(rs);
+           $('#myModal').modal('hide');
+           $(".modal-backdrop").remove();
+       })
+    }
+</script>
